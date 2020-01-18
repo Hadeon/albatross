@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
-export default class Login extends Component {
+export default class Dashboard extends Component {
   render() {
     return (
       <View>
