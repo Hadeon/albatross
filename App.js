@@ -3,19 +3,14 @@ import { StyleSheet, View } from 'react-native';
 
 import Root from './Root';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Root/>
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff"
-  }
-});
+export default App;

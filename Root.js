@@ -1,20 +1,14 @@
-import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import Login from './routes/Login'
 
-import Login from './routes/Login';
-import Dashboard from './routes/Dashboard';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-const Root = StackNavigator(
-  {
-    Login: {
-      screen: Login
-    },
-    Dashboard: {
-      screen: Dashboard
-    }
-  },{
-    initialRouteName: "Login"
-  }
-);
+const MainNavigator = createStackNavigator({
+  Login: {screen: Login},
+});
+
+const Root = createAppContainer(MainNavigator);
 
 export default Root;
