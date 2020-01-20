@@ -23,7 +23,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>This is a test for the login. Where the fuck is this?!?</Text>
+        <Text>We good now. Gotta log in to Albatross.</Text>
         <Button onPress={this.onLoginPress} title="Login">Login</Button>
       </View>
     )
