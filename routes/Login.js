@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
 import Auth0 from 'react-native-auth0';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID } from 'react-native-dotenv';
+import { 
+  View, 
+  Text, 
+  StyleSheet,
+  AsyncStorage,
+  TouchableOpacity
+} from 'react-native';
 
 const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: AUTH0_CLIENT_ID })
 
@@ -23,8 +29,10 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>We good now. Gotta log in to Albatross.</Text>
-        <Button onPress={this.onLoginPress} title="Login">Login</Button>
+        <Text style={styles.textHeader}>Welcome to Albatross.</Text>
+        <TouchableOpacity onPress={() => (this.onLoginPress())} title="Login" style={styles.loginButton}>
+          <Text style={styles.loginText}>Login</Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -33,11 +41,31 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
     alignItems: "center"
   },
   text: {
     color: '#333',
     margin: 50
+  },
+  loginButton: {
+    backgroundColor: '#27ae60',
+    marginTop: 25,
+    paddingTop: 10,
+    paddingRight: 50,
+    paddingBottom: 10,
+    paddingLeft: 50,
+    borderRadius: 5,
+    shadowColor: '#333',
+    shadowRadius: 5,
+    shadowOffset: { width: 5, height: 5 },
+    shadowOpacity: .3
+  },
+  loginText: {
+    color: '#fff',
+    fontSize: 20
+  },
+  textHeader: {
+    fontSize: 15
   }
 })
