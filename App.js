@@ -6,9 +6,7 @@ import Root from './Root';
 class App extends Component {
   render() {
     return (
-      <View>
-        <Root/>
-      </View>
+      <Root/>
     )
   }
 }
