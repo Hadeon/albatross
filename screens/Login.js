@@ -13,16 +13,14 @@ const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: AUTH0_CLIENT_ID })
 
 export default class Login extends Component {
 
-  onLoginPress = () => {
-    console.log('test');
-    auth0
+  onLoginPress = async () => {
+    await auth0
     .webAuth
     .authorize({scope: 'openid profile email'})
-    .then(credentials =>
-      // Successfully authenticated
-      // Store the accessToken
-      this.setState({ accessToken: credentials.accessToken })
-    )
+    .then(credentials => {
+      AsyncStorage.setItem('accessToken', credentials.accessToken)
+      this.props.navigation.navigate('App');
+    })
     .catch(error => console.log(error));
   }
 
