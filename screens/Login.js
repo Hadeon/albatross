@@ -8,18 +8,25 @@ import {
   AsyncStorage,
   TouchableOpacity
 } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { setAccessToken } from '../_actions/auth';
 
 const auth0 = new Auth0({ domain: AUTH0_DOMAIN, clientId: AUTH0_CLIENT_ID })
 
-export default class Login extends Component {
+class Login extends Component {
 
   onLoginPress = async () => {
     await auth0
     .webAuth
     .authorize({scope: 'openid profile email'})
     .then(credentials => {
-      AsyncStorage.setItem('accessToken', credentials.accessToken)
-      this.props.navigation.navigate('App');
+      let token = credentials.accessToken;
+      // AsyncStorage.setItem('accessToken', credentials.accessToken);
+      // this.props.dispatch({ type: 'SET_ACCESS_TOKEN', token })
+      this.props.setAccessToken(token);
+      this.props.navigation.navigate('AuthLoading');
     })
     .catch(error => console.log(error));
   }
@@ -27,7 +34,7 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.textHeader}>Welcome to Albatross.</Text>
+  <Text style={styles.textHeader}>Welcome to Albatross.</Text>
         <TouchableOpacity onPress={() => (this.onLoginPress())} title="Login" style={styles.loginButton}>
           <Text style={styles.loginText}>Login</Text>
         </TouchableOpacity>
@@ -66,4 +73,12 @@ const styles = StyleSheet.create({
   textHeader: {
     fontSize: 15
   }
-})
+});
+
+const mapStateToProps = state => ({
+  accessToken: state.accessToken
+});
+
+const mapDispatchToProps = { setAccessToken };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

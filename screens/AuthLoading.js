@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   StatusBar
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import { globalStyles } from '../styles/global';
 
@@ -15,8 +16,12 @@ class AuthLoadingScreen extends React.Component {
   }
 
   _bootstrapAsync = async() => {
-    const accessToken = await AsyncStorage.getItem('accessToken');
-    this.props.navigation.navigate(accessToken ? 'App' : 'Auth');
+    try {
+      // const accessToken = await AsyncStorage.getItem('accessToken');
+      this.props.navigation.navigate(this.props.accessToken != ''  ? 'App' : 'Auth');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render(){
@@ -29,4 +34,8 @@ class AuthLoadingScreen extends React.Component {
   }
 }
 
-export default AuthLoadingScreen;
+const mapStateToProps = state => ({
+  accessToken: state.authReducer.accessToken
+});
+
+export default connect(mapStateToProps)(AuthLoadingScreen);
