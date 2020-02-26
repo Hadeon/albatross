@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { 
   View, 
-  Text
+  Text,
+  StyleSheet
 } from 'react-native';
+import Swiper from 'react-native-swiper';
+
+import NavigationMenu from './NavigationMenu';
+
 import { connect } from 'react-redux';
 import { setAccessToken } from '../_actions/auth';
 
@@ -23,15 +28,29 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <View style={globalStyles.container}>
-        <Navbar logout={this.logoutAsync}/>
-        <View style={globalStyles.appBody}>
-          <Text style={globalStyles.headerText}>This is a test. {this.props.accessToken}</Text>
+      <Swiper showButtons={false} index={1} loop={false}>
+        <NavigationMenu/>
+        <View>
+          <Navbar logout={this.logoutAsync}/>
+          <View style={styles.dashboardContainer}>
+            <Text style={styles.headerText}>This is a test. {this.props.accessToken}</Text>
+          </View>
         </View>
-      </View>
+      </Swiper>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  dashboardContainer: {
+    backgroundColor: '#34495e',
+    height: '100%',
+    padding: 10
+  },
+  headerText: {
+    color: 'white'
+  }
+})
 
 const mapStateToProps = state => ({
   accessToken: state.authReducer.accessToken
