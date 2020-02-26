@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { 
-  AsyncStorage, 
+import React from 'react';
+import {  
   View, 
   ActivityIndicator,
   StatusBar

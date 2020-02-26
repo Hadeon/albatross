@@ -5,11 +5,9 @@ import {
   View, 
   Text, 
   StyleSheet,
-  AsyncStorage,
   TouchableOpacity
 } from 'react-native';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { setAccessToken } from '../_actions/auth';
 

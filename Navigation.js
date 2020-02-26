@@ -3,7 +3,6 @@ import Dashboard from './screens/Dashboard';
 import AuthLoading from './screens/AuthLoading';
 
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
 
 // const MainNavigator = createStackNavigator({
 //   Login: {screen: Login},

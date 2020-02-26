@@ -26,7 +26,7 @@ class Dashboard extends Component {
       <View style={globalStyles.container}>
         <Navbar logout={this.logoutAsync}/>
         <View style={globalStyles.appBody}>
-    <Text style={globalStyles.headerText}>This is a test. {this.props.accessToken}</Text>
+          <Text style={globalStyles.headerText}>This is a test. {this.props.accessToken}</Text>
         </View>
       </View>
     )
